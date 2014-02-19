@@ -1,0 +1,35 @@
+{% extends '../../../views/base.swig.html' %}
+{% block content %}
+<h2>Statement of {{ user.name }}</h2>
+{% if user.historic_events.length %}
+<table class="table table-striped">
+    <caption>Your payments statement as of <time datetime="{{ now }}">{{ now|date("Y-m-d") }}</time></caption>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>When</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for event in user.historic_events %}
+        <tr>
+            {% if event.renumeration < 0 %}
+            <td><span class="glyphicon glyphicon glyphicon-chevron-up"></span> {{ event.description }}</td>
+            {% elif if event.renumeration > 0 %}
+            <td><span class="glyphicon glyphicon glyphicon-chevron-down"></span> {{ event.description }}</td>
+            {% else %}
+            <td>{{ event.description }}</td>
+            {% endif %}
+            <td>{{ event.type }}</td>
+            <td>{{ event.renumeration }}</td>
+            <td><time datetime="{{ event.created }}">{{ event.created|date("Y-m-d H:M") }}</time></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You have nothing to show currently.</p>
+{% endif %}
+{% endblock %}
