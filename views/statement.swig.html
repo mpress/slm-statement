@@ -3,7 +3,7 @@
 <h2>Statement of {{ user.name }}</h2>
 {% if events.length %}
 <table class="table table-striped">
-    <caption>Your payments statement as of <time datetime="{{ now }}">{{ now|date("Y-m-d") }}</time></caption>
+    <caption>Your active history as of <time datetime="{{ now }}">{{ now|date("Y-m-d") }}</time></caption>
     <thead>
         <tr>
             <th>Description</th>
