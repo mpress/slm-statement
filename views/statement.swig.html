@@ -17,7 +17,7 @@
         <tr>
             {% if event.renumeration < 0 %}
             <td><span class="glyphicon glyphicon glyphicon-chevron-up"></span> {{ event.description }}</td>
-            {% elif if event.renumeration > 0 %}
+            {% elif event.renumeration > 0 %}
             <td><span class="glyphicon glyphicon glyphicon-chevron-down"></span> {{ event.description }}</td>
             {% else %}
             <td>{{ event.description }}</td>
