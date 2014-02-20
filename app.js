@@ -18,7 +18,8 @@ module.exports = {
                 res.render("statement", { "now": new Date() });
             }
             else {
-                res.locals.flash("warning", "Details Required.", "Please enter your personal details to continue.");
+                res.locals.flash("warning", "Invalid member.", "Please sign in.");
+                res.redirect("/");
             }
         });
         
