@@ -16,7 +16,6 @@ module.exports = {
             var user = res.locals.user;
             if (user) {
                 user.historic_events(function (err, events) {
-                    console.log(err, events);
                     if (!err) {
                         res.render("statement", { "now": new Date(), "events": events});
                     }
