@@ -16,9 +16,8 @@ module.exports = {
             var user = res.locals.user;
             if (user) {
                 user.historic_events(function (err, events) {
-                    console.log(err, events);
                     if (!err) {
-                        res.render("statement", { "now": new Date(), "events": events});
+                        res.render("statement", {"events": events});
                     }
                     else {
                         res.locals.flash("danger", "Database Error.", "Very sorry but there appears to be a problem with the database.");
