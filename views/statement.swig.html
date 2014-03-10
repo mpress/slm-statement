@@ -3,28 +3,29 @@
 <h2>Statement of {{ user.name }}</h2>
 {% if events.length %}
 <table class="table table-striped">
-    <caption>Your active history as of <time datetime="{{ now }}">{{ now|date("Y-m-d") }}</time></caption>
+    <caption>Your active history as of <time datetime="{{ now.toISOString() }}">{{ now|date("Y-m-d") }}</time></caption>
     <thead>
         <tr>
             <th>Description</th>
             <th>Type</th>
-            <th>Value</th>
+            <th>Value (£)</th>
             <th>When</th>
         </tr>
     </thead>
     <tbody>
     {% for event in events %}
         <tr>
-            {% if event.renumeration < 0 %}
-            <td><span class="glyphicon glyphicon glyphicon-chevron-up"></span> {{ event.description }}</td>
-            {% elif event.renumeration > 0 %}
-            <td><span class="glyphicon glyphicon glyphicon-chevron-down"></span> {{ event.description }}</td>
+            {% if event.renumeration %}
+                {% if event.renumeration < 0 %}
+                <td><span class="glyphicon glyphicon-chevron-up"></span> {{ event.description }}</td>
+                {% else %}
+                <td><span class="glyphicon glyphicon-chevron-down"></span> {{ event.description }}</td>
             {% else %}
             <td>{{ event.description }}</td>
             {% endif %}
             <td>{{ event.type }}</td>
             <td>{{ event.renumeration }}</td>
-            <td><time datetime="{{ event.created }}">{{ event.created|date("Y-m-d H:M") }}</time></td>
+            <td><time datetime="{{ event.created.toISOString() }}">{{ event.created|date("d M Y") }} {{ event.created.toLocaleTimeString() }}</time></td>
         </tr>
     {% endfor %}
     </tbody>
